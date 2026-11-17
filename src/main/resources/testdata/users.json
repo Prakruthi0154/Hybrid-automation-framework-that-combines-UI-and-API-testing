@@ -1,0 +1,9 @@
+{
+  "validUser": {
+    "email": "qa.user@example.test",
+    "password": "replace-with-test-secret"
+  },
+  "productSearch": {
+    "query": "wireless headphones"
+  }
+}

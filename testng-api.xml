@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="API Suite" parallel="methods" thread-count="2" verbose="1">
+    <listeners>
+        <listener class-name="com.example.ecommerce.listeners.FrameworkListener"/>
+    </listeners>
+    <test name="API Smoke">
+        <groups><run><include name="api"/></run></groups>
+        <classes>
+            <class name="com.example.ecommerce.tests.ApiSmokeTest"/>
+            <class name="com.example.ecommerce.tests.ApiOrderTest"/>
+            <class name="com.example.ecommerce.tests.HybridCheckoutTest"/>
+        </classes>
+    </test>
+</suite>
