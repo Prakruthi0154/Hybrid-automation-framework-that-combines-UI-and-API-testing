@@ -8,7 +8,6 @@
         <classes>
             <class name="com.example.ecommerce.tests.ApiSmokeTest"/>
             <class name="com.example.ecommerce.tests.ApiOrderTest"/>
-            <class name="com.example.ecommerce.tests.HybridCheckoutTest"/>
         </classes>
     </test>
 </suite>

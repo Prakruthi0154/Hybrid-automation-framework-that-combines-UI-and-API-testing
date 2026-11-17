@@ -50,8 +50,9 @@ src/main/resources/
   testdata/users.json
 src/test/java/
   base/ dataproviders/ tests/
-testng.xml              UI + hybrid suite
-testng-api.xml          API-focused suite
+testng.xml              environment-independent framework checks (default CI suite)
+testng-api.xml          API integration suite
+testng-integration.xml  UI, API, and hybrid AUT integration suite
 ```
 
 ## Setup and execution
@@ -72,11 +73,12 @@ Requirements: JDK 17, Maven 3.8+, network access for Maven/driver downloads, and
 3. Execute suites:
 
    ```powershell
-   mvn clean test
-   mvn clean test -Papi-suite
+   mvn clean verify
+   mvn clean verify -Papi-suite
+   mvn clean verify -Pintegration-suite
    ```
 
-   `browser` accepts `chrome`, `edge`, or `firefox`. `env` is included in reports; host configuration is supplied through system properties/configuration.
+   The default suite verifies configuration, test-data readers, and request DTO validation without requiring an AUT. `api-suite` and `integration-suite` contact live services and require valid endpoints, selectors, credentials, and product IDs. `browser` accepts `chrome`, `edge`, or `firefox`. `env` is included in reports; host configuration is supplied through system properties/configuration.
 
 Reports are written to `target/extent-reports/`, screenshots to `target/screenshots/`, logs to `target/logs/`, and TestNG/Surefire output to `target/surefire-reports/`.
 
@@ -105,7 +107,7 @@ Set `api.test.product.id` to a product identifier available to the test account 
 
 ### CI/CD
 
-- GitHub Actions workflow: `.github/workflows/ci.yml` (Java 17, Maven verify, artifacts uploaded even on failure).
+- GitHub Actions workflow: `.github/workflows/ci.yml` (Java 17, Maven verify of environment-independent framework checks, artifacts uploaded even on failure). Run API/UI integration suites only after providing a configured AUT and test data.
 - `Jenkinsfile` uses Jenkins tools named `JDK17` and `Maven3`; configure matching tool installations and browser dependencies on the agent. Set base URLs and secrets as Jenkins-managed properties/credentials before execution.
 - MySQL validation is intentionally optional and not wired without a target schema/contract.
 

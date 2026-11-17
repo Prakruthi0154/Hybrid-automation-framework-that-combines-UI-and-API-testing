@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="E-Commerce Integration Suite" parallel="tests" thread-count="2" verbose="1">
+    <listeners>
+        <listener class-name="com.example.ecommerce.listeners.FrameworkListener"/>
+    </listeners>
+    <test name="Hybrid End-to-End">
+        <groups><run><include name="e2e"/></run></groups>
+        <classes><class name="com.example.ecommerce.tests.HybridCheckoutTest"/></classes>
+    </test>
+    <test name="UI Tests">
+        <groups><run><include name="ui"/></run></groups>
+        <classes>
+            <class name="com.example.ecommerce.tests.UiSmokeTest"/>
+            <class name="com.example.ecommerce.tests.UiCartLifecycleTest"/>
+        </classes>
+    </test>
+    <test name="API Tests">
+        <groups><run><include name="api"/></run></groups>
+        <classes>
+            <class name="com.example.ecommerce.tests.ApiSmokeTest"/>
+            <class name="com.example.ecommerce.tests.ApiOrderTest"/>
+        </classes>
+    </test>
+</suite>

@@ -16,6 +16,7 @@
         <env>qa</env>
         <browser>chrome</browser>
         <headless>true</headless>
+        <testng.suiteXmlFile>testng.xml</testng.suiteXmlFile>
     </properties>
     <dependencies>
         <dependency>
@@ -91,13 +92,12 @@
     </build>
     <profiles>
         <profile>
-            <id>default-suite</id>
-            <activation><activeByDefault>true</activeByDefault></activation>
-            <properties><testng.suiteXmlFile>testng.xml</testng.suiteXmlFile></properties>
-        </profile>
-        <profile>
             <id>api-suite</id>
             <properties><testng.suiteXmlFile>testng-api.xml</testng.suiteXmlFile></properties>
+        </profile>
+        <profile>
+            <id>integration-suite</id>
+            <properties><testng.suiteXmlFile>testng-integration.xml</testng.suiteXmlFile></properties>
         </profile>
     </profiles>
 </project>
